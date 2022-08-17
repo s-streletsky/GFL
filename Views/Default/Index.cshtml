@@ -1,0 +1,27 @@
+﻿@using System.Web
+@model GeeksForLess_Test.Models.Folder
+ 
+@{
+    ViewData["Title"] = "Корень";
+}
+
+<div>
+    <h1><i class="bi bi-arrow-right"></i> @Model.Title</h1>
+    <ul>       
+            @if (Model.ParentId.HasValue)
+            {
+            <li>
+                <i class="bi bi-arrow-90deg-up"></i>
+                <a href="..">[UP]</a>
+            </li>
+            }
+        
+    @foreach (var subFolder in Model.Subfolders)
+    {
+            <li>
+                <i class="bi bi-folder"></i>
+                <a href="@HttpUtility.UrlEncode(@subFolder.Title)/">@subFolder.Title</a>
+            </li>
+    }
+    </ul>
+</div>

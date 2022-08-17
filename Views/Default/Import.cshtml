@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Импорт";
+}
+
+@if (!string.IsNullOrWhiteSpace((string)ViewData["ExportFileName"])) {
+    <div>
+        <p>Скачать резервную копию базы данных по состоянию до момента импорта: <a href="/Default/File/@ViewData["ExportFileName"]">@ViewData["ExportFileName"]</a></p>
+    </div>
+} 
+else {
+<div>
+    <h1><i class="bi bi-download"></i> Импорт структуры каталогов из файла</h1>
+    <h5>Текущее состояние базы данных будет экспортировано в файл с возможностью сохрания на локальном жёстком диске</h5>
+    <br />
+    <form method="post" enctype="multipart/form-data" asp-controller="Default" asp-action="Import">
+        <div class="form-group">
+            <div class="col-md-10">
+                <input class="form-control" type="file" name="file" id="formFile" />
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="submit" value="Импортировать" class="btn btn-outline-success" />
+            </div>
+        </div>
+    </form>
+</div>
+}
